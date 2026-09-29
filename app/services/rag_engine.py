@@ -27,7 +27,7 @@ class RAGEngine:
         os.makedirs(self.db_dir, exist_ok=True)
         
         self.embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-        self.llm = ChatGroq(model_name="llama-3.1-8b-instant", temperature=0)
+        self.llm = ChatGroq(model_name="qwen/qwen3.8-27b", temperature=0)
         self.vector_store = Chroma(persist_directory=self.db_dir, embedding_function=self.embeddings)
         self.bm25_index = None
         self.chunks = []
