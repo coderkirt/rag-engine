@@ -1,12 +1,22 @@
 import os
 import shutil
 import gc
+from contextlib import asynccontextmanager
+from pathlib import Path
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from app.services.rag_engine import RAGEngine
 
-app = FastAPI(title="Memory-Aware Company RAG API")
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    print("--- System Initialization ---")
+    engine.initialize()
+    yield
+
+
+app = FastAPI(title="Memory-Aware Company RAG API", lifespan=lifespan)
 
 # --- CENTRALIZED PATH CONFIGURATION ---
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,20 +32,26 @@ engine = RAGEngine(DATA_DIR, DB_DIR)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=[
+        "http://localhost:8501",
+        "http://127.0.0.1:8501",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-async def startup_event():
-    print(f"--- System Initialization ---")
-    engine.initialize()
+# --- UPLOAD LIMITS ---
+MAX_UPLOAD_BYTES = 50 * 1024 * 1024  # 50 MB
+ALLOWED_EXTENSIONS = {".pdf", ".txt"}
+
 
 class QueryRequest(BaseModel):
     question: str
     session_id: str = "default_user"
+
+
+class SessionRequest(BaseModel):
+    session_id: str
 
 @app.get("/")
 def home():
@@ -44,7 +60,7 @@ def home():
 @app.post("/query")
 def handle_query(request: QueryRequest):
     # Using the engine instance correctly
-    result = engine.query(request.question)
+    result = engine.query(request.question, session_id=request.session_id)
     if isinstance(result, str) and "Error" in result:
         raise HTTPException(status_code=500, detail=result)
     return result
@@ -52,16 +68,58 @@ def handle_query(request: QueryRequest):
 @app.post("/api/upload")
 async def upload_file(file: UploadFile = File(...)):
     try:
-        file_path = os.path.join(DATA_DIR, file.filename)
+        # Sanitize the filename: strip ALL path components so something like
+        # "../../evil.txt" can never escape the data directory.
+        raw_name = (file.filename or "").replace("\\", "/")
+        safe_name = os.path.basename(raw_name).strip()
+        if not safe_name:
+            raise HTTPException(status_code=400, detail="Invalid filename.")
+
+        # Extension allowlist
+        ext = Path(safe_name).suffix.lower()
+        if ext not in ALLOWED_EXTENSIONS:
+            raise HTTPException(
+                status_code=400,
+                detail=f"File type '{ext}' not allowed. Accepted: {sorted(ALLOWED_EXTENSIONS)}",
+            )
+
+        file_path = os.path.join(DATA_DIR, safe_name)
+
+        # Stream to disk with a hard size cap
+        written = 0
+        overflow = False
         with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
+            while True:
+                blob = await file.read(1024 * 1024)
+                if not blob:
+                    break
+                written += len(blob)
+                if written > MAX_UPLOAD_BYTES:
+                    overflow = True
+                    break
+                buffer.write(blob)
+
+        if overflow:
+            os.remove(file_path)
+            raise HTTPException(status_code=413, detail="File exceeds the 50 MB limit.")
             
         gc.collect()
         engine.initialize()
         
-        return {"status": "success", "message": f"Uploaded and indexed {file.filename}"}
+        return {"status": "success", "message": f"Uploaded and indexed {safe_name}"}
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
+
+@app.post("/api/clear-history")
+def clear_history(request: SessionRequest):
+    engine.clear_session(request.session_id)
+    return {
+        "status": "success",
+        "message": f"Conversation memory cleared for session '{request.session_id}'.",
+    }
+
 
 @app.post("/api/reset-database")
 def reset_database():
