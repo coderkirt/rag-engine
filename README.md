@@ -9,12 +9,14 @@ A hybrid-retrieval RAG (Retrieval-Augmented Generation) engine that answers ques
 ## Features
 
 - **Hybrid retrieval** — dense semantic search (Chroma + `all-MiniLM-L6-v2`) combined with sparse BM25 keyword search (`rank_bm25`), merged and deduplicated to catch both semantic and exact-term matches.
+- **Multi-turn conversation memory** — follow-up questions like *"how is it different from v5?"* are rewritten into self-contained search queries using recent session history (`/api/clear-history` wipes a session's memory).
 - **Automatic document categorization** — every ingested file is classified by an LLM into a short topic tag (e.g. *"Marine Plastic Detection"*); tags are cached in `category_cache.json` so files are only classified once.
 - **Metadata-aware filtering** — restrict retrieval to a single file or category at query time.
 - **Grounded answers with source metadata** — every response returns the `file_name` and `category` of the chunks used, so answers are auditable.
 - **Refusal behavior** — when the corpus doesn't contain the answer, the assistant says so instead of hallucinating.
 - **LLM-as-a-Judge evaluation harness** — a 10-case suite (direct answers, negative/refusal cases, cross-domain synthesis questions) scored by a second LLM, with a strict "no sources retrieved ⇒ automatic fail" grounding guard and JSON audit logging.
-- **REST API + lightweight UI** — FastAPI backend with document upload and DB reset endpoints; Streamlit chat frontend.
+- **REST API + lightweight UI** — FastAPI backend with document upload and DB reset endpoints; Streamlit chat frontend with a live diagnostics panel showing the standalone search query and the exact retrieved chunks behind every answer.
+- **Hardened ingestion** — upload filenames are sanitized against path traversal, extensions are allow-listed (`.pdf`/`.txt`), uploads are capped at 50 MB, and an empty corpus starts gracefully instead of crashing startup.
 
 ---
 
@@ -81,9 +83,7 @@ python -m venv .venv
 source .venv/bin/activate            # Windows: .venv\Scripts\activate
 
 # 2. Install dependencies
-pip install fastapi "uvicorn[standard]" python-multipart streamlit requests python-dotenv \
-    langchain-community langchain-text-splitters langchain-huggingface langchain-chroma \
-    langchain-groq rank_bm25 sentence-transformers pypdf openai
+pip install -r requirements.txt
 
 # 3. Configure your API key
 echo "GROQ_API_KEY=your_key_here" > .env
@@ -104,7 +104,7 @@ uvicorn app.main:app --reload
 streamlit run frontend_app.py
 ```
 
-The first startup ingests and indexes every document in `app/data/` (one LLM call per file for categorization, then embedding). Subsequent startups reuse the persisted Chroma DB and the category cache.
+The first startup ingests and indexes every document in `app/data/` (one LLM call per file for categorization, then embedding). Subsequent startups reuse the persisted Chroma DB and the category cache. An empty data directory no longer crashes — the engine starts with an empty index and populates on first upload.
 
 ### Ask a question
 
@@ -129,7 +129,8 @@ curl -X POST http://127.0.0.1:8000/query \
 |---|---|---|
 | `GET`  | `/` | Health check |
 | `POST` | `/query` | Ask a question — body: `{"question": str, "session_id": str}` |
-| `POST` | `/api/upload` | Upload + index a document (multipart form field `file`, `.pdf`/`.txt`) |
+| `POST` | `/api/upload` | Upload + index a document (multipart form field `file`, `.pdf`/`.txt`, max 50 MB) |
+| `POST` | `/api/clear-history` | Wipe a session's conversation memory — body: `{"session_id": str}` |
 | `POST` | `/api/reset-database` | Wipe the vector DB and re-index `app/data/` |
 
 ---
@@ -155,19 +156,19 @@ For each case in `qa_suite/test_cases.json` the harness:
 This is a portfolio/learning project — honest about what it is and isn't:
 
 - **The LLM model name is hardcoded** rather than configured via `.env`. Groq has retired model IDs before (e.g. `llama-3.1-8b-instant`), which turns every query into a 500 until the constant is updated. Pin it to a model available to your key, or move it to an environment variable.
-- **No authentication.** Anyone who can reach the API can upload files or wipe the database, and CORS is wide open. Do not expose it publicly as-is.
-- **Upload filenames are not sanitized** (a `../` filename can escape the data directory) and file size is unbounded. Fix before any multi-user use.
-- **Empty corpus crashes startup.** With no documents in `app/data/`, ingestion raises an empty-upsert error from Chroma. Always ingest ≥ 1 document.
+- **No authentication.** Anyone who can reach the API can upload files or wipe the database. CORS is restricted to the local Streamlit origin, but the API itself is unauthenticated — do not expose it publicly as-is.
 - **Full re-ingestion on every upload/reset** — documents are re-split and re-embedded rather than indexed incrementally. Fine for a handful of PDFs, not for thousands.
-- **Single-turn only.** `session_id` is accepted but no conversation memory is implemented yet.
+- **Conversation memory is in-process** — session history lives in a dict inside the running engine, so it resets on restart and is not shared across workers. A store (Redis/SQLite) would be the production path.
 - **Naive BM25 tokenization** (whitespace split, lowercased) — punctuation and stopwords are not handled.
 - **LLM-as-a-Judge has known biases** (verbosity, self-preference). The harness mitigates this with the grounding guard and refusal checks, but scores should be read as directional, not absolute.
 
 ## Roadmap
 
-- [ ] Sanitize uploads (basename + extension allowlist + size cap) and add API-key auth
+- [x] Sanitize uploads (basename + extension allowlist + size cap)
+- [x] Graceful empty-corpus startup
+- [x] Multi-turn session memory behind `session_id`
+- [ ] API-key auth and per-session rate limiting
 - [ ] Incremental indexing (per-file) instead of full re-ingestion
-- [ ] Multi-turn session memory behind `session_id`
 - [ ] Pytest suite with mocked LLM + GitHub Actions CI
 - [ ] Reranker stage and configurable retriever weights
 
