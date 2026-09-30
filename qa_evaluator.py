@@ -2,7 +2,7 @@ import json
 from langchain_groq import ChatGroq
 
 # Using a high-reasoning model for the audit process
-qa_model = ChatGroq(model_name="llama-3.3-70b-versatile", temperature=0)
+qa_model = ChatGroq(model_name="qwen/qwen3.8-27b", temperature=0)
 
 def perform_audit(question, answer, context):
     """

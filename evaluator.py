@@ -1,7 +1,12 @@
 import os
 import json
+import sys
 import time
 from dotenv import load_dotenv
+
+# Windows consoles default to cp1252 and crash on the ✅/❌ status glyphs.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from app.core.logger import ResultLogger
 from app.core.validator import LLMValidator
 from app.services.rag_engine import RAGEngine
@@ -19,7 +24,7 @@ logger = ResultLogger(log_file="qa_audit_report.json")
 validator = LLMValidator(
     api_key=os.getenv("GROQ_API_KEY"),
     base_url="https://api.groq.com/openai/v1",
-    model=os.getenv("EVAL_MODEL", "llama-3.3-70b-versatile")
+    model=os.getenv("EVAL_MODEL", "qwen/qwen3.8-27b")
 )
 
 def run_evaluation():

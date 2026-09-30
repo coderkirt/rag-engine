@@ -2,7 +2,7 @@ from langchain_community.document_loaders import PyPDFLoader
 import os
 
 # Adjust this path if your file name is slightly different
-file_path = os.path.join("data", "SANS-Bridging-Gap-Between-Threat-Intelligence-Business-Risk_Garvey.pdf")
+file_path = os.path.join("app", "data", "SANS-Bridging-Gap-Between-Threat-Intelligence-Business-Risk_Garvey.pdf")
 
 print(f"DEBUG: Looking for file at: {file_path}")
 

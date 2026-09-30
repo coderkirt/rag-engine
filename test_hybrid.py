@@ -12,7 +12,7 @@ def run_test():
     print("--- Starting Hybrid Retrieval Test ---")
     
     # Instantiate the engine (you might need to adjust data_dir/db_dir paths)
-    engine = RAGEngine(data_dir="app/data", db_dir="app/db")
+    engine = RAGEngine(data_dir="app/data", db_dir="chroma_db")
     engine.initialize()
     
     # Test 1: Blind query
