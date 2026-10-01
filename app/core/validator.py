@@ -1,5 +1,6 @@
 import json
 import logging
+import time
 from typing import Dict, Any
 from openai import OpenAI
 
@@ -17,14 +18,23 @@ class LLMValidator:
         )
         
         try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": f"Q: {question}\nExpected: {expected}\nActual: {actual}"}
-                ],
-                response_format={"type": "json_object"}
-            )
+            response = None
+            for attempt in range(3):  # ride out transient Groq 429/503s
+                try:
+                    response = self.client.chat.completions.create(
+                        model=self.model,
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": f"Q: {question}\nExpected: {expected}\nActual: {actual}"}
+                        ],
+                        response_format={"type": "json_object"},
+                        max_tokens=500  # stay under Groq on-demand OTPM limit (1000/min)
+                    )
+                    break
+                except Exception:
+                    if attempt == 2:
+                        raise
+                    time.sleep(2 ** attempt)
             return json.loads(response.choices[0].message.content)
         except Exception as e:
             self.logger.error(f"LLM validation error: {e}")

@@ -1,6 +1,6 @@
 [
   {
-    "category": "Virtual Network Embedding",
+    "category": "Marine Plastic Detection",
     "is_negative": false,
     "question": "What is the key difference between the backbone architectures of YOLOv4 and YOLOv5 as discussed in the marine plastic research?",
     "expected_answer": "YOLOv4 utilizes the CSPDarknet-53 backbone, while YOLOv5 also uses a CSP structure but is optimized for a smaller, lightweight model size which significantly increases inference speed."
@@ -15,7 +15,7 @@
     "category": "Threat Intelligence",
     "is_negative": false,
     "question": "How does the SANS paper suggest threat intelligence teams overcome the 'It's too expensive' pushback from executives?",
-    "expected_answer": "Teams should demonstrate the cost savings of risk avoidance, show the financial impact of not having an active threat intelligence function, and utilize cost-effective OSINT tools."
+    "expected_answer": "Teams should demonstrate the cost savings of risk avoidance and show the financial impact of not having an active threat intelligence function, framing intelligence value in business terms."
   },
   {
     "category": "Threat Intelligence",
@@ -57,6 +57,6 @@
     "category": "Cross-Domain Synthesis",
     "is_negative": false,
     "question": "What is the common role of 'efficiency' in both the VNE research and the SANS threat intelligence white paper?",
-    "expected_answer": "In VNE, efficiency refers to optimizing physical resource allocation for network traffic. In the SANS paper, efficiency refers to the strategic allocation of an organization's intelligence resources to maximize business value and risk mitigation."
+    "expected_answer": "The VNE paper uses efficiency in the sense of optimizing the allocation of physical network resources for traffic. The SANS white paper does not use the term efficiency at all, so a correct grounded answer reports the VNE usage and explicitly states that the SANS paper does not address efficiency, instead of inventing a parallel that is not in the corpus."
   }
 ]
