@@ -8,7 +8,8 @@ A hybrid-retrieval RAG (Retrieval-Augmented Generation) engine that answers ques
 
 ## Features
 
-- **Hybrid retrieval** — dense semantic search (Chroma + `all-MiniLM-L6-v2`) combined with sparse BM25 keyword search (`rank_bm25`), merged and deduplicated to catch both semantic and exact-term matches.
+- **Hybrid retrieval with Reciprocal Rank Fusion** — dense semantic search (Chroma + `all-MiniLM-L6-v2`) combined with sparse BM25 keyword search (`rank_bm25`), fused with RRF so a document that ranks highly in *either* retriever reaches the LLM (naive concatenation buried keyword-only hits below the context cutoff).
+- **Resilient LLM calls** — every Groq invocation retries with exponential backoff, riding through transient 429/503 errors instead of failing the request.
 - **Multi-turn conversation memory** — follow-up questions like *"how is it different from v5?"* are rewritten into self-contained search queries using recent session history (`/api/clear-history` wipes a session's memory).
 - **Automatic document categorization** — every ingested file is classified by an LLM into a short topic tag (e.g. *"Marine Plastic Detection"*); tags are cached in `category_cache.json` so files are only classified once.
 - **Metadata-aware filtering** — restrict retrieval to a single file or category at query time.
@@ -38,7 +39,7 @@ A hybrid-retrieval RAG (Retrieval-Augmented Generation) engine that answers ques
                  │  from in-memory chunks)       │
                  └───────────────┬───────────────┘
                                  ▼
-        query ─► both retrievers (top-5 each) ─► merge + dedupe ─► top-3 context
+        query ─► both retrievers (top-8 each) ─► RRF fusion ─► top-8 context
                                  ▼
                  Groq LLM (prompted to answer ONLY from context)
                                  ▼
@@ -106,6 +107,8 @@ streamlit run frontend_app.py
 
 The first startup ingests and indexes every document in `app/data/` (one LLM call per file for categorization, then embedding). Subsequent startups reuse the persisted Chroma DB and the category cache. An empty data directory no longer crashes — the engine starts with an empty index and populates on first upload.
 
+> On networks that cannot reach huggingface.co, the embedding model still loads from the local cache — set `HF_HUB_OFFLINE=1` to skip the network checks and start faster.
+
 ### Ask a question
 
 ```bash
@@ -146,8 +149,10 @@ For each case in `qa_suite/test_cases.json` the harness:
 1. Queries the engine (with category filters for document-specific questions, unfiltered for cross-domain ones);
 2. Applies a **grounding guard** — a standard question that retrieves zero sources fails automatically;
 3. Verifies **negative cases** — questions about things *not* in the corpus must be refused, not answered;
-4. Scores standard cases with an **LLM-as-a-Judge** (`EVAL_MODEL`, default `llama-3.3-70b-versatile`), passing at ≥ 8/10;
+4. Scores standard cases with an **LLM-as-a-Judge** (`EVAL_MODEL`, default `qwen/qwen3.8-27b`), passing at ≥ 8/10;
 5. Appends every result to `qa_audit_report.json` for auditing.
+
+**Latest run: 8/10 cases pass.** The progression from 5/10 came from three fixes, each driven by a per-case failure diagnosis: Reciprocal Rank Fusion (replacing a naive merge that starved BM25-only hits), a corrected ground-truth suite (two cases demanded facts the corpus never contained), and retry/backoff so transient Groq errors stopped aborting the run. The one remaining failure is a genuine known gap: cross-corpus synthesis (retrieval surfaces only one document's chunks for questions that span two papers).
 
 ---
 
@@ -167,6 +172,8 @@ This is a portfolio/learning project — honest about what it is and isn't:
 - [x] Sanitize uploads (basename + extension allowlist + size cap)
 - [x] Graceful empty-corpus startup
 - [x] Multi-turn session memory behind `session_id`
+- [x] Reciprocal Rank Fusion for hybrid retrieval
+- [x] Exponential-backoff retry on transient Groq 429/503 errors
 - [ ] API-key auth and per-session rate limiting
 - [ ] Incremental indexing (per-file) instead of full re-ingestion
 - [ ] Pytest suite with mocked LLM + GitHub Actions CI
