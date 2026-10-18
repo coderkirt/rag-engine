@@ -2152,5 +2152,291 @@
             "researchPaper.pdf",
             "SANS-Bridging-Gap-Between-Threat-Intelligence-Business-Risk_Garvey.pdf"
         ]
+    },
+    {
+        "timestamp": "2026-10-11T02:45:06.305337",
+        "question": "What is the key difference between the backbone architectures of YOLOv4 and YOLOv5 as discussed in the marine plastic research?",
+        "expected": "YOLOv4 utilizes the CSPDarknet-53 backbone, while YOLOv5 also uses a CSP structure but is optimized for a smaller, lightweight model size which significantly increases inference speed.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:08.345031",
+        "question": "What specific image augmentation techniques were used to expand the dataset for marine plastic detection?",
+        "expected": "Procedures included flipping, rotating, color correction, adjusting brightness, and converting images to grayscale to simulate various marine plastic conditions.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:10.422095",
+        "question": "How does the SANS paper suggest threat intelligence teams overcome the 'It's too expensive' pushback from executives?",
+        "expected": "Teams should demonstrate the cost savings of risk avoidance and show the financial impact of not having an active threat intelligence function, framing intelligence value in business terms.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:12.484585",
+        "question": "Why is it important for threat intelligence teams to move beyond just producing technical reports?",
+        "expected": "To bridge the Intelligence-Stakeholder Gap, teams must ensure their outputs are relevant to senior stakeholders' business risk priorities rather than just providing purely technical data.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:14.545774",
+        "question": "How does the Brundtland report define sustainable development according to the provided paper?",
+        "expected": "It defines sustainable development as development that meets the needs of the present without compromising the ability of future generations to meet their own needs.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:16.613338",
+        "question": "Does the VNE paper propose the use of reinforcement learning to solve the virtual network embedding problem?",
+        "expected": "No, the paper focuses on adapting the Conflict-Based Search (CBS) framework and algorithms like VNE-CBS and iVNE-CBS, not reinforcement learning.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:18.670040",
+        "question": "Does the marine plastic paper claim that YOLOv5 is significantly faster than YOLOv4 in all testing scenarios?",
+        "expected": "No, the paper notes that while YOLOv5-S is lightweight and fast, some studies show accuracy vs. speed trade-offs depending on specific configurations and UAV landing spot detection tasks.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:20.745048",
+        "question": "Does the SANS paper advocate for replacing all human analysts with automated threat detection software?",
+        "expected": "No, the paper emphasizes the importance of the threat intelligence function's influence and the need for human analysts to effectively communicate risks to stakeholders.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:22.805117",
+        "question": "How could deep learning object detection methods from the marine plastic paper be adapted for the sustainable development goals mentioned in the India-focused paper?",
+        "expected": "Techniques like YOLO object detection could be applied to monitor natural resource degradation or waste management compliance, directly supporting the SDG goal of responsible consumption and production.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:45:24.875135",
+        "question": "What is the common role of 'efficiency' in both the VNE research and the SANS threat intelligence white paper?",
+        "expected": "The VNE paper uses efficiency in the sense of optimizing the allocation of physical network resources for traffic. The SANS white paper does not use the term efficiency at all, so a correct grounded answer reports the VNE usage and explicitly states that the SANS paper does not address efficiency, instead of inventing a parallel that is not in the corpus.",
+        "actual": "I do not have enough information to answer this question.",
+        "passed": false,
+        "sources": []
+    },
+    {
+        "timestamp": "2026-10-11T02:58:36.973455",
+        "question": "What is the key difference between the backbone architectures of YOLOv4 and YOLOv5 as discussed in the marine plastic research?",
+        "expected": "YOLOv4 utilizes the CSPDarknet-53 backbone, while YOLOv5 also uses a CSP structure but is optimized for a smaller, lightweight model size which significantly increases inference speed.",
+        "actual": "The provided context does not contain any information regarding YOLOv4, YOLOv5, their backbone architectures, or marine plastic research. The source files discuss Threat Intelligence (SANS Whitepaper) and a startup funding evaluation (COOPGIG). Therefore, I cannot answer the question based on the provided context.",
+        "passed": false,
+        "sources": [
+            "coopgig-fundmatch-evaluation.pdf",
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T02:58:39.623544",
+        "question": "What specific image augmentation techniques were used to expand the dataset for marine plastic detection?",
+        "expected": "Procedures included flipping, rotating, color correction, adjusting brightness, and converting images to grayscale to simulate various marine plastic conditions.",
+        "actual": "The provided context does not contain information about image augmentation techniques used to expand a dataset for marine plastic detection. The source files exclusively discuss threat intelligence, security postures, and incident response within the context of a SANS whitepaper.",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T02:58:42.650087",
+        "question": "How does the SANS paper suggest threat intelligence teams overcome the 'It's too expensive' pushback from executives?",
+        "expected": "Teams should demonstrate the cost savings of risk avoidance and show the financial impact of not having an active threat intelligence function, framing intelligence value in business terms.",
+        "actual": "Based on the provided context, the document does not contain specific information on how the SANS paper suggests threat intelligence teams overcome the \"It's too expensive\" pushback from executives.\n\nThe provided excerpts discuss:\n*   The definition and importance of Threat Intelligence (TI).\n*   The need for TI to be actionable and contextual.\n*   Sources of external TI.\n*   How TI helps drive investigations and response.\n*   General executive awareness and the growing popularity of TI programs (citing a 2016 survey).\n\nHowever, none of the provided text segments address cost objections, budget justification strategies, or specific advice for countering the \"It's too expensive\" argument.\n\n**Missing Information:** The specific section or advice within the SANS whitepaper that addresses cost concerns or budgetary pushback from executives is not included in the provided context.",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T02:58:48.100278",
+        "question": "Why is it important for threat intelligence teams to move beyond just producing technical reports?",
+        "expected": "To bridge the Intelligence-Stakeholder Gap, teams must ensure their outputs are relevant to senior stakeholders' business risk priorities rather than just providing purely technical data.",
+        "actual": "Based on the provided context, it is important for threat intelligence (TI) teams to move beyond just producing technical reports (or simply collecting data points) for the following reasons:\n\n1.  **Actionability and Business Relevance:** TI is only useful to an organization if it is **actionable**. Teams must combine data points with **contextual information** to determine threats that are relevant to the business, rather than just listing atomic indicators without context.\n2.  **Driving Decision-Making:** TI provides \"evidence-based knowledge... [and] actionable advice\" that can be used to **inform decisions** regarding the organization's response to menaces or hazards.\n3.  **Enhancing Incident Response and Investigations:** Incorporating TI into daily activities allows investigative and incident response (IR) teams to:\n    *   Quickly act on information to detect compromises.\n    *   Understand threat actors and their attack methods (e.g., distinguishing specific attacker regimens).\n    *   Guide which hosts to investigate during an incident.\n4.  **Proactive Defense vs. Reactive Analysis:** Security teams often fall behind by analyzing artifacts from the past. Effective TI helps organizations **detect incidents sooner** and potentially **prevent them**, moving from a reactive stance to a proactive one.\n5.  **Stakeholder Awareness and Value:** Moving beyond technical reports helps make key stakeholders more aware of the overall threat landscape, addressing executive concerns about the value of security investments and the need to protect the business.\n\n**Source Files Used:**\n*   SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+        "passed": true,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T02:59:04.049400",
+        "question": "How does the Brundtland report define sustainable development according to the provided paper?",
+        "expected": "It defines sustainable development as development that meets the needs of the present without compromising the ability of future generations to meet their own needs.",
+        "actual": "The provided context does not contain the answer. The source files discuss Threat Intelligence (SANS whitepaper) and startup funding eligibility (CoopGig evaluation), but none of them mention the Brundtland report or define sustainable development.",
+        "passed": false,
+        "sources": [
+            "coopgig-fundmatch-evaluation.pdf",
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T02:59:17.661883",
+        "question": "Does the VNE paper propose the use of reinforcement learning to solve the virtual network embedding problem?",
+        "expected": "No, the paper focuses on adapting the Conflict-Based Search (CBS) framework and algorithms like VNE-CBS and iVNE-CBS, not reinforcement learning.",
+        "actual": "The provided context does not contain any information regarding a \"VNE paper,\" \"virtual network embedding,\" or the use of \"reinforcement learning.\" The context consists exclusively of excerpts from the file `SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf`, which discusses threat intelligence (TI) programs, sources, and actionable security measures.\n\nTherefore, based strictly on the provided context, it is not possible to answer whether the VNE paper proposes the use of reinforcement learning to solve the virtual network embedding problem.",
+        "passed": true,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T02:59:34.113742",
+        "question": "Does the marine plastic paper claim that YOLOv5 is significantly faster than YOLOv4 in all testing scenarios?",
+        "expected": "No, the paper notes that while YOLOv5-S is lightweight and fast, some studies show accuracy vs. speed trade-offs depending on specific configurations and UAV landing spot detection tasks.",
+        "actual": "The provided context does not contain any information regarding \"marine plastic paper,\" \"YOLOv5,\" or \"YOLOv4.\" The source files exclusively discuss threat intelligence, SANS whitepapers, and cybersecurity programs. Therefore, the context does not contain the answer.",
+        "passed": true,
+        "sources": [
+            "coopgig-fundmatch-evaluation.pdf",
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T02:59:48.756402",
+        "question": "Does the SANS paper advocate for replacing all human analysts with automated threat detection software?",
+        "expected": "No, the paper emphasizes the importance of the threat intelligence function's influence and the need for human analysts to effectively communicate risks to stakeholders.",
+        "actual": "No, the SANS paper does not advocate for replacing all human analysts with automated threat detection software. Instead, it states that Threat Intelligence (TI) \"merely complements other ways of identifying the portions of a network or enterprise that need protection, as part of a well-balanced information security team\u2019s efforts.\" The paper emphasizes that TI is useful only if it is \"actionable\" and that data feeds \"must be consumed and acted upon by the receiving organization to extract its value,\" implying a human role in interpreting and responding to the intelligence.\n\nSource File: SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+        "passed": true,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:00:02.677487",
+        "question": "How could deep learning object detection methods from the marine plastic paper be adapted for the sustainable development goals mentioned in the India-focused paper?",
+        "expected": "Techniques like YOLO object detection could be applied to monitor natural resource degradation or waste management compliance, directly supporting the SDG goal of responsible consumption and production.",
+        "actual": "The provided context does not contain the answer. The context consists exclusively of excerpts from \"SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf,\" which discusses cyber threat intelligence, attacker trends, and security program maturity. There is no information regarding \"deep learning object detection methods,\" a \"marine plastic paper,\" or an \"India-focused paper\" mentioning sustainable development goals.",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:00:21.723094",
+        "question": "What is the common role of 'efficiency' in both the VNE research and the SANS threat intelligence white paper?",
+        "expected": "The VNE paper uses efficiency in the sense of optimizing the allocation of physical network resources for traffic. The SANS white paper does not use the term efficiency at all, so a correct grounded answer reports the VNE usage and explicitly states that the SANS paper does not address efficiency, instead of inventing a parallel that is not in the corpus.",
+        "actual": "Based on the provided context, there is no information regarding \"VNE research.\" The provided context consists exclusively of excerpts from the file `SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf`. Therefore, it is impossible to determine the common role of 'efficiency' in both VNE research and the SANS white paper because the context for VNE research is missing.\n\nSource File: SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:02:11.684211",
+        "question": "What is the key difference between the backbone architectures of YOLOv4 and YOLOv5 as discussed in the marine plastic research?",
+        "expected": "YOLOv4 utilizes the CSPDarknet-53 backbone, while YOLOv5 also uses a CSP structure but is optimized for a smaller, lightweight model size which significantly increases inference speed.",
+        "actual": "The provided context does not contain any information regarding YOLOv4, YOLOv5, their backbone architectures, or marine plastic research. The source files discuss Threat Intelligence (SANS Whitepaper) and a startup funding evaluation (COOPGIG). Therefore, I cannot answer the question based on the provided context.",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+            "coopgig-fundmatch-evaluation.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:02:14.312649",
+        "question": "What specific image augmentation techniques were used to expand the dataset for marine plastic detection?",
+        "expected": "Procedures included flipping, rotating, color correction, adjusting brightness, and converting images to grayscale to simulate various marine plastic conditions.",
+        "actual": "The provided context does not contain information about image augmentation techniques used to expand a dataset for marine plastic detection. The source files exclusively discuss threat intelligence, security postures, and incident response within the context of a SANS whitepaper.",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:02:17.173516",
+        "question": "How does the SANS paper suggest threat intelligence teams overcome the 'It's too expensive' pushback from executives?",
+        "expected": "Teams should demonstrate the cost savings of risk avoidance and show the financial impact of not having an active threat intelligence function, framing intelligence value in business terms.",
+        "actual": "Based on the provided context, the document does not contain specific information on how the SANS paper suggests threat intelligence teams overcome the \"It's too expensive\" pushback from executives.\n\nThe provided excerpts discuss:\n*   The definition and importance of Threat Intelligence (TI).\n*   The need for TI to be actionable and contextual.\n*   Sources of external TI.\n*   How TI helps drive investigations and response.\n*   General executive awareness and the growing popularity of TI programs (citing a 2016 survey).\n\nHowever, none of the provided text segments address cost objections, budget justification strategies, or specific advice for countering the \"It's too expensive\" argument.\n\n**Missing Information:** The specific section or advice within the SANS whitepaper that addresses cost concerns or budgetary pushback from executives is not included in the provided context.",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:02:21.546049",
+        "question": "Why is it important for threat intelligence teams to move beyond just producing technical reports?",
+        "expected": "To bridge the Intelligence-Stakeholder Gap, teams must ensure their outputs are relevant to senior stakeholders' business risk priorities rather than just providing purely technical data.",
+        "actual": "Based on the provided context, it is important for threat intelligence (TI) teams to move beyond just producing technical reports (or simply collecting data points) for the following reasons:\n\n1.  **Actionability and Business Relevance:** TI is only useful to an organization if it is **actionable**. Teams must combine data points with **contextual information** to determine threats that are relevant to the business, rather than just listing atomic indicators without context.\n2.  **Driving Decision-Making:** TI provides \"evidence-based knowledge... [and] actionable advice\" that can be used to **inform decisions** regarding the organization's response to menaces or hazards.\n3.  **Enhancing Incident Response and Investigations:** Incorporating TI into daily activities allows investigative and incident response (IR) teams to:\n    *   Quickly act on information to detect compromises.\n    *   Understand threat actors and their attack methods (e.g., distinguishing specific attacker regimens).\n    *   Guide which hosts to investigate during an incident.\n4.  **Proactive Defense vs. Reactive Analysis:** Security teams often fall behind by analyzing artifacts from the past. Effective TI helps organizations **detect incidents sooner** and potentially **prevent them**, moving from a reactive stance to a proactive one.\n5.  **Stakeholder Awareness and Value:** Moving beyond technical reports helps make key stakeholders more aware of the overall threat landscape, addressing executive concerns about the value of security investments and the need to protect the business.\n\n**Source Files Used:**\n*   SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+        "passed": true,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:02:37.372475",
+        "question": "How does the Brundtland report define sustainable development according to the provided paper?",
+        "expected": "It defines sustainable development as development that meets the needs of the present without compromising the ability of future generations to meet their own needs.",
+        "actual": "The provided context does not contain the answer. The source files discuss Threat Intelligence (SANS whitepaper) and startup funding eligibility (CoopGig evaluation), but none of them mention the Brundtland report or define sustainable development.",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+            "coopgig-fundmatch-evaluation.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:02:50.936102",
+        "question": "Does the VNE paper propose the use of reinforcement learning to solve the virtual network embedding problem?",
+        "expected": "No, the paper focuses on adapting the Conflict-Based Search (CBS) framework and algorithms like VNE-CBS and iVNE-CBS, not reinforcement learning.",
+        "actual": "The provided context does not contain any information regarding a \"VNE paper,\" \"virtual network embedding,\" or the use of \"reinforcement learning.\" The context consists exclusively of excerpts from the file `SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf`, which discusses threat intelligence (TI) programs, sources, and actionable security measures.\n\nTherefore, based strictly on the provided context, it is not possible to answer whether the VNE paper proposes the use of reinforcement learning to solve the virtual network embedding problem.",
+        "passed": true,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:03:07.390164",
+        "question": "Does the marine plastic paper claim that YOLOv5 is significantly faster than YOLOv4 in all testing scenarios?",
+        "expected": "No, the paper notes that while YOLOv5-S is lightweight and fast, some studies show accuracy vs. speed trade-offs depending on specific configurations and UAV landing spot detection tasks.",
+        "actual": "The provided context does not contain any information regarding \"marine plastic paper,\" \"YOLOv5,\" or \"YOLOv4.\" The source files exclusively discuss threat intelligence, SANS whitepapers, and cybersecurity programs. Therefore, the context does not contain the answer.",
+        "passed": true,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+            "coopgig-fundmatch-evaluation.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:03:21.981482",
+        "question": "Does the SANS paper advocate for replacing all human analysts with automated threat detection software?",
+        "expected": "No, the paper emphasizes the importance of the threat intelligence function's influence and the need for human analysts to effectively communicate risks to stakeholders.",
+        "actual": "No, the SANS paper does not advocate for replacing all human analysts with automated threat detection software. Instead, it states that Threat Intelligence (TI) \"merely complements other ways of identifying the portions of a network or enterprise that need protection, as part of a well-balanced information security team\u2019s efforts.\" The paper emphasizes that TI is useful only if it is \"actionable\" and that data feeds \"must be consumed and acted upon by the receiving organization to extract its value,\" implying a human role in interpreting and responding to the intelligence.\n\nSource File: SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+        "passed": true,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:03:36.188283",
+        "question": "How could deep learning object detection methods from the marine plastic paper be adapted for the sustainable development goals mentioned in the India-focused paper?",
+        "expected": "Techniques like YOLO object detection could be applied to monitor natural resource degradation or waste management compliance, directly supporting the SDG goal of responsible consumption and production.",
+        "actual": "The provided context does not contain the answer. The context consists exclusively of excerpts from \"SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf,\" which discusses cyber threat intelligence, attacker trends, and security program maturity. There is no information regarding \"deep learning object detection methods,\" a \"marine plastic paper,\" or an \"India-focused paper\" mentioning sustainable development goals.",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
+    },
+    {
+        "timestamp": "2026-10-11T03:03:55.167838",
+        "question": "What is the common role of 'efficiency' in both the VNE research and the SANS threat intelligence white paper?",
+        "expected": "The VNE paper uses efficiency in the sense of optimizing the allocation of physical network resources for traffic. The SANS white paper does not use the term efficiency at all, so a correct grounded answer reports the VNE usage and explicitly states that the SANS paper does not address efficiency, instead of inventing a parallel that is not in the corpus.",
+        "actual": "Based on the provided context, there is no information regarding \"VNE research.\" The provided context consists exclusively of excerpts from the file `SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf`. Therefore, it is impossible to determine the common role of 'efficiency' in both VNE research and the SANS white paper because the context for VNE research is missing.\n\nSource File: SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf",
+        "passed": false,
+        "sources": [
+            "SANS_Whitepaper_Threat_Intelligence__What_It_Is__and_How_to_Use_It_Effectively.pdf"
+        ]
     }
 ]
